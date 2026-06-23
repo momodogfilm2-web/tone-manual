@@ -1,0 +1,1030 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>デザイントーンマニュアル｜園田病院</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap');
+
+    :root {
+      --blue-main:    #4F92BD;
+      --blue-light:   #6CB3D9;
+      --blue-lighter: #83BDD8;
+      --blue-bg:      #E7F2F9;
+      --teal:         #00AD9B;
+      --teal-bg:      #E8F7F6;
+      --gray-bg:      #F7FAFA;
+      --gray-light:   #F4F5F6;
+      --border:       #E7E9EB;
+      --border-mid:   #CCC;
+      --text-dark:    #333;
+      --text-mid:     #666;
+      --white:        #FEFEFE;
+      --alert:        #F42B66;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Hiragino Kaku Gothic ProN', 'Noto Sans JP', sans-serif;
+      background: #f5f7fa;
+      color: var(--text-dark);
+      font-size: 14px;
+      line-height: 1.75;
+    }
+
+    /* ── 表紙ヘッダー ── */
+    .cover {
+      background: var(--blue-main);
+      padding: 56px 0 44px;
+      text-align: center;
+      color: #fff;
+      position: relative;
+      overflow: hidden;
+    }
+    .cover::before {
+      content: '';
+      position: absolute;
+      right: -60px; top: -60px;
+      width: 260px; height: 260px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.07);
+    }
+    .cover::after {
+      content: '';
+      position: absolute;
+      left: -40px; bottom: -80px;
+      width: 200px; height: 200px;
+      border-radius: 50%;
+      background: rgba(0,173,155,0.18);
+    }
+    .cover .site-url {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 11px;
+      letter-spacing: 0.15em;
+      opacity: 0.6;
+      margin-bottom: 14px;
+    }
+    .cover h1 {
+      font-size: 26px;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      line-height: 1.3;
+    }
+    .cover .subtitle {
+      font-size: 13px;
+      opacity: 0.72;
+      margin-top: 10px;
+      letter-spacing: 0.04em;
+    }
+    .cover .slogan {
+      display: inline-block;
+      margin-top: 20px;
+      background: rgba(255,255,255,0.15);
+      border: 1px solid rgba(255,255,255,0.3);
+      border-radius: 4px;
+      font-size: 13px;
+      padding: 6px 18px;
+      letter-spacing: 0.06em;
+    }
+
+    /* ── レイアウト ── */
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 0 24px 80px;
+    }
+
+    /* ── セクション ── */
+    .section {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      margin-top: 28px;
+      overflow: hidden;
+    }
+    .section-header {
+      background: var(--blue-bg);
+      border-bottom: 1px solid var(--border);
+      padding: 14px 24px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .section-header .num {
+      background: var(--blue-main);
+      color: #fff;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 11px;
+      font-weight: 700;
+      width: 24px; height: 24px;
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+    .section-header h2 {
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--blue-main);
+      letter-spacing: 0.04em;
+    }
+    .section-body { padding: 24px 28px; }
+
+    /* ── カラーパレット ── */
+    .palette-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+      gap: 14px;
+    }
+    .color-item {
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      overflow: hidden;
+    }
+    .color-swatch {
+      height: 72px;
+      width: 100%;
+    }
+    .color-info {
+      padding: 10px 12px;
+      background: var(--white);
+    }
+    .color-name {
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--text-dark);
+      margin-bottom: 2px;
+    }
+    .color-hex {
+      font-family: 'Montserrat', monospace;
+      font-size: 11px;
+      color: var(--text-mid);
+    }
+    .color-role {
+      font-size: 10px;
+      color: var(--text-mid);
+      margin-top: 3px;
+      line-height: 1.4;
+    }
+
+    /* カラー使用率バー */
+    .usage-bar-wrap {
+      margin-top: 20px;
+    }
+    .usage-label { font-size: 12px; color: var(--text-mid); margin-bottom: 8px; }
+    .usage-bar {
+      display: flex;
+      height: 24px;
+      border-radius: 4px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+    }
+    .usage-seg {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 10px;
+      font-weight: 700;
+      color: #fff;
+      letter-spacing: 0.04em;
+    }
+
+    /* ── タイポグラフィ ── */
+    .type-row {
+      border-bottom: 1px solid var(--border);
+      padding: 14px 0;
+      display: grid;
+      grid-template-columns: 160px 1fr;
+      gap: 16px;
+      align-items: center;
+    }
+    .type-row:last-child { border-bottom: none; }
+    .type-label {
+      font-size: 11px;
+      color: var(--text-mid);
+      font-weight: 600;
+      letter-spacing: 0.06em;
+    }
+    .type-sample {
+      line-height: 1.4;
+    }
+
+    /* ── DO/DON'T ── */
+    .do-dont {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin-top: 4px;
+    }
+    .do-box, .dont-box {
+      border-radius: 8px;
+      padding: 16px 18px;
+    }
+    .do-box { background: #f0faf8; border: 1px solid #a8dbd5; }
+    .dont-box { background: #fff5f7; border: 1px solid #f5b8c5; }
+    .do-box .box-label { color: #00AD9B; font-weight: 700; font-size: 12px; letter-spacing: 0.08em; margin-bottom: 10px; }
+    .dont-box .box-label { color: var(--alert); font-weight: 700; font-size: 12px; letter-spacing: 0.08em; margin-bottom: 10px; }
+    .do-box ul, .dont-box ul { padding-left: 16px; font-size: 13px; line-height: 2; }
+
+    /* ── ビジュアルデモ ── */
+    .demo-banner {
+      border-radius: 8px;
+      overflow: hidden;
+      margin-bottom: 12px;
+      position: relative;
+    }
+    .demo-banner-inner {
+      padding: 28px 32px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      min-height: 120px;
+    }
+
+    /* ── ボタンデモ ── */
+    .btn-demo {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 16px;
+    }
+    .btn-sample {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      border-radius: 10px;
+      padding: 0 20px;
+      height: 44px;
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      cursor: default;
+      font-family: inherit;
+    }
+
+    /* ── 写真トーン ── */
+    .photo-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      margin-bottom: 16px;
+    }
+    .photo-card {
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      overflow: hidden;
+    }
+    .photo-thumb {
+      height: 80px;
+      width: 100%;
+    }
+    .photo-label {
+      padding: 8px 10px;
+      font-size: 11px;
+      color: var(--text-mid);
+      line-height: 1.5;
+    }
+
+    /* ── 文体サンプル ── */
+    .copy-card {
+      background: var(--gray-bg);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 16px 20px;
+      margin-bottom: 10px;
+    }
+    .copy-card:last-child { margin-bottom: 0; }
+    .copy-tag {
+      display: inline-block;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      padding: 2px 8px;
+      border-radius: 10px;
+      margin-bottom: 8px;
+    }
+    .copy-tag.good { background: var(--teal-bg); color: var(--teal); }
+    .copy-tag.bad { background: #FEEDED; color: var(--alert); }
+    .copy-text { font-size: 14px; line-height: 1.8; }
+    .copy-note { font-size: 11px; color: var(--text-mid); margin-top: 4px; }
+
+    /* ── チェックリスト ── */
+    .checklist { list-style: none; }
+    .checklist li {
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+      padding: 8px 0;
+      border-bottom: 1px solid var(--border);
+      font-size: 13px;
+      line-height: 1.6;
+    }
+    .checklist li:last-child { border-bottom: none; }
+    .checklist li::before {
+      content: '✓';
+      color: var(--teal);
+      font-weight: 700;
+      font-size: 14px;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+
+    /* ── フッター ── */
+    .doc-footer {
+      text-align: center;
+      color: var(--text-mid);
+      font-size: 11px;
+      margin-top: 48px;
+      padding-top: 20px;
+      border-top: 1px solid var(--border);
+    }
+
+    /* ── PDFボタン ── */
+    .pdf-wrap {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      z-index: 999;
+    }
+    .pdf-btn {
+      background: var(--blue-main);
+      color: #fff;
+      border: none;
+      border-radius: 50px;
+      padding: 12px 22px;
+      font-size: 13px;
+      font-weight: 700;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      box-shadow: 0 4px 16px rgba(79,146,189,0.4);
+      font-family: inherit;
+      letter-spacing: 0.04em;
+      transition: background 0.2s;
+    }
+    .pdf-btn:hover { background: #3a7da8; }
+
+    /* ── 印刷 ── */
+    @media print {
+      @page { size: A4; margin: 12mm 12mm; }
+      body { background: white; font-size: 12px; }
+      .pdf-wrap { display: none !important; }
+      .section { break-inside: avoid; }
+      .do-dont { break-inside: avoid; }
+      .cover { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+      .section-header { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+      .color-swatch { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+      .usage-seg { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+      .do-box { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+      .dont-box { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+      .demo-banner-inner { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+      .btn-sample { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+      .copy-tag { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+      .photo-thumb { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    }
+
+    @media (max-width: 600px) {
+      .palette-grid { grid-template-columns: repeat(2, 1fr); }
+      .do-dont { grid-template-columns: 1fr; }
+      .photo-grid { grid-template-columns: 1fr 1fr; }
+      .type-row { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- 表紙 -->
+<div class="cover">
+  <div class="site-url">sonoda-hospital.jp</div>
+  <h1>デザイントーンマニュアル</h1>
+  <p class="subtitle">バナー・note記事アイキャッチ 制作ガイドライン</p>
+  <div class="slogan">つなぐ医療、つづく街。</div>
+</div>
+
+<div class="container">
+
+  <!-- 0. このマニュアルについて -->
+  <div class="section" style="margin-top:28px;">
+    <div class="section-body" style="padding:20px 28px;">
+      <p style="font-size:13px; line-height:1.9; color:var(--text-mid);">
+        このマニュアルは、園田病院（けんゆう会）のウェブサイト <strong style="color:var(--text-dark);">sonoda-hospital.jp</strong> のデザインシステムをもとに、
+        バナーやnoteアイキャッチを制作する方向けにまとめたトーン・アンド・マナーの基準資料です。<br>
+        サイトと同じ「落ち着きと温かみ」のトーンを保つことで、どのメディアに使われても違和感のないブランド体験をつくることを目的としています。
+      </p>
+    </div>
+  </div>
+
+
+  <!-- 1. カラーパレット -->
+  <div class="section">
+    <div class="section-header">
+      <div class="num">1</div>
+      <h2>カラーパレット</h2>
+    </div>
+    <div class="section-body">
+
+      <p style="font-size:12px; color:var(--text-mid); margin-bottom:20px;">施設ごとにメインカラーを分けています。バナー制作時は対象施設のパレットを使用してください。</p>
+
+      <!-- 2施設パレット -->
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-bottom:28px;">
+
+        <!-- 園田病院 -->
+        <div style="border:2px solid #4F92BD; border-radius:10px; overflow:hidden;">
+          <div style="background:#4F92BD; color:#fff; padding:10px 16px; font-size:13px; font-weight:700; letter-spacing:0.04em;">
+            園田病院
+          </div>
+          <div style="padding:14px 16px; display:flex; flex-direction:column; gap:10px;">
+
+            <div style="display:flex; align-items:center; gap:10px;">
+              <div style="width:48px; height:48px; border-radius:8px; background:#4F92BD; flex-shrink:0; border:1px solid rgba(0,0,0,0.06);"></div>
+              <div>
+                <div style="font-size:10px; font-weight:700; letter-spacing:0.08em; color:var(--text-mid); margin-bottom:2px;">MAIN COLOR</div>
+                <div style="font-size:13px; font-weight:700; color:var(--text-dark);">メインブルー</div>
+                <div style="font-family:'Montserrat',monospace; font-size:11px; color:#4F92BD;">#4F92BD</div>
+                <span style="display:inline-block;font-size:9px;font-weight:700;letter-spacing:0.06em;padding:1px 7px;border-radius:3px;margin-top:3px;background:#ddeaf5;color:#2a6090;">SOFT · ソフト</span>
+              </div>
+            </div>
+
+            <div style="display:flex; align-items:center; gap:10px;">
+              <div style="width:48px; height:48px; border-radius:8px; background:#6CB3D9; flex-shrink:0; border:1px solid rgba(0,0,0,0.06);"></div>
+              <div>
+                <div style="font-size:10px; font-weight:700; letter-spacing:0.08em; color:var(--text-mid); margin-bottom:2px;">SUB COLOR</div>
+                <div style="font-size:13px; font-weight:700; color:var(--text-dark);">ライトブルー</div>
+                <div style="font-family:'Montserrat',monospace; font-size:11px; color:#6CB3D9;">#6CB3D9</div>
+                <span style="display:inline-block;font-size:9px;font-weight:700;letter-spacing:0.06em;padding:1px 7px;border-radius:3px;margin-top:3px;background:#e4f2f9;color:#2a7090;">LIGHT · ライト</span>
+              </div>
+            </div>
+
+            <div style="display:flex; align-items:center; gap:10px;">
+              <div style="width:48px; height:48px; border-radius:8px; background:#F5A623; flex-shrink:0; border:1px solid rgba(0,0,0,0.06);"></div>
+              <div>
+                <div style="font-size:10px; font-weight:700; letter-spacing:0.08em; color:var(--text-mid); margin-bottom:2px;">ACCENT</div>
+                <div style="font-size:13px; font-weight:700; color:var(--text-dark);">ウォームアンバー</div>
+                <div style="font-family:'Montserrat',monospace; font-size:11px; color:#F5A623;">#F5A623</div>
+                <span style="display:inline-block;font-size:9px;font-weight:700;letter-spacing:0.06em;padding:1px 7px;border-radius:3px;margin-top:3px;background:#fdf0d5;color:#8a5200;">STRONG · ストロング</span>
+              </div>
+            </div>
+
+            <div style="display:flex; align-items:center; gap:10px;">
+              <div style="width:48px; height:48px; border-radius:8px; background:#E7F2F9; flex-shrink:0; border:1px solid rgba(0,0,0,0.1);"></div>
+              <div>
+                <div style="font-size:10px; font-weight:700; letter-spacing:0.08em; color:var(--text-mid); margin-bottom:2px;">BACKGROUND</div>
+                <div style="font-size:13px; font-weight:700; color:var(--text-dark);">ブルー背景</div>
+                <div style="font-family:'Montserrat',monospace; font-size:11px; color:#4F92BD;">#E7F2F9</div>
+              </div>
+            </div>
+
+          </div>
+          <!-- 使用比率 -->
+          <div style="padding:10px 16px 14px; background:var(--gray-bg); border-top:1px solid var(--border);">
+            <div style="font-size:10px; color:var(--text-mid); margin-bottom:6px;">推奨使用比率</div>
+            <div style="display:flex; height:18px; border-radius:4px; overflow:hidden; border:1px solid var(--border);">
+              <div style="background:#E7F2F9; color:#999; width:50%; display:flex; align-items:center; justify-content:center; font-size:8px;">背景 50%</div>
+              <div style="background:#4F92BD; color:#fff; width:30%; display:flex; align-items:center; justify-content:center; font-size:8px;">メイン 30%</div>
+              <div style="background:#F5A623; color:#fff; width:20%; display:flex; align-items:center; justify-content:center; font-size:8px;">AC 20%</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- さわやかセンター -->
+        <div style="border:2px solid #00AD9B; border-radius:10px; overflow:hidden;">
+          <div style="background:#00AD9B; color:#fff; padding:10px 16px; font-size:13px; font-weight:700; letter-spacing:0.04em;">
+            さわやかセンター
+          </div>
+          <div style="padding:14px 16px; display:flex; flex-direction:column; gap:10px;">
+
+            <div style="display:flex; align-items:center; gap:10px;">
+              <div style="width:48px; height:48px; border-radius:8px; background:#00AD9B; flex-shrink:0; border:1px solid rgba(0,0,0,0.06);"></div>
+              <div>
+                <div style="font-size:10px; font-weight:700; letter-spacing:0.08em; color:var(--text-mid); margin-bottom:2px;">MAIN COLOR</div>
+                <div style="font-size:13px; font-weight:700; color:var(--text-dark);">アクセントティール</div>
+                <div style="font-family:'Montserrat',monospace; font-size:11px; color:#00AD9B;">#00AD9B</div>
+                <span style="display:inline-block;font-size:9px;font-weight:700;letter-spacing:0.06em;padding:1px 7px;border-radius:3px;margin-top:3px;background:#fdf0d5;color:#006a5a;">STRONG · ストロング</span>
+              </div>
+            </div>
+
+            <div style="display:flex; align-items:center; gap:10px;">
+              <div style="width:48px; height:48px; border-radius:8px; background:#3EC9B4; flex-shrink:0; border:1px solid rgba(0,0,0,0.06);"></div>
+              <div>
+                <div style="font-size:10px; font-weight:700; letter-spacing:0.08em; color:var(--text-mid); margin-bottom:2px;">SUB COLOR</div>
+                <div style="font-size:13px; font-weight:700; color:var(--text-dark);">ライトティール</div>
+                <div style="font-family:'Montserrat',monospace; font-size:11px; color:#3EC9B4;">#3EC9B4</div>
+                <span style="display:inline-block;font-size:9px;font-weight:700;letter-spacing:0.06em;padding:1px 7px;border-radius:3px;margin-top:3px;background:#ddeaf5;color:#1a7a6a;">SOFT · ソフト</span>
+              </div>
+            </div>
+
+            <div style="display:flex; align-items:center; gap:10px;">
+              <div style="width:48px; height:48px; border-radius:8px; background:#F07878; flex-shrink:0; border:1px solid rgba(0,0,0,0.06);"></div>
+              <div>
+                <div style="font-size:10px; font-weight:700; letter-spacing:0.08em; color:var(--text-mid); margin-bottom:2px;">ACCENT</div>
+                <div style="font-size:13px; font-weight:700; color:var(--text-dark);">ソフトコーラル</div>
+                <div style="font-family:'Montserrat',monospace; font-size:11px; color:#F07878;">#F07878</div>
+                <span style="display:inline-block;font-size:9px;font-weight:700;letter-spacing:0.06em;padding:1px 7px;border-radius:3px;margin-top:3px;background:#fce8e8;color:#a03030;">BRIGHT · ブライト</span>
+              </div>
+            </div>
+
+            <div style="display:flex; align-items:center; gap:10px;">
+              <div style="width:48px; height:48px; border-radius:8px; background:#E8F7F6; flex-shrink:0; border:1px solid rgba(0,0,0,0.1);"></div>
+              <div>
+                <div style="font-size:10px; font-weight:700; letter-spacing:0.08em; color:var(--text-mid); margin-bottom:2px;">BACKGROUND</div>
+                <div style="font-size:13px; font-weight:700; color:var(--text-dark);">ティール背景</div>
+                <div style="font-family:'Montserrat',monospace; font-size:11px; color:#00AD9B;">#E8F7F6</div>
+              </div>
+            </div>
+
+          </div>
+          <!-- 使用比率 -->
+          <div style="padding:10px 16px 14px; background:var(--gray-bg); border-top:1px solid var(--border);">
+            <div style="font-size:10px; color:var(--text-mid); margin-bottom:6px;">推奨使用比率</div>
+            <div style="display:flex; height:18px; border-radius:4px; overflow:hidden; border:1px solid var(--border);">
+              <div style="background:#E8F7F6; color:#999; width:50%; display:flex; align-items:center; justify-content:center; font-size:8px;">背景 50%</div>
+              <div style="background:#00AD9B; color:#fff; width:30%; display:flex; align-items:center; justify-content:center; font-size:8px;">メイン 30%</div>
+              <div style="background:#F07878; color:#fff; width:20%; display:flex; align-items:center; justify-content:center; font-size:8px;">AC 20%</div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- 共通ニュートラル -->
+      <div style="margin-bottom:28px;">
+        <div style="font-size:11px; font-weight:700; letter-spacing:0.1em; color:var(--text-mid); margin-bottom:12px;">SHARED NEUTRAL — 両施設共通</div>
+        <div style="display:flex; gap:10px; flex-wrap:wrap;">
+          <div class="color-item" style="width:110px;">
+            <div class="color-swatch" style="background:#333333; height:44px;"></div>
+            <div class="color-info" style="padding:8px 10px;">
+              <div class="color-name" style="font-size:11px;">テキストダーク</div>
+              <div class="color-hex">#333333</div>
+            </div>
+          </div>
+          <div class="color-item" style="width:110px;">
+            <div class="color-swatch" style="background:#666666; height:44px;"></div>
+            <div class="color-info" style="padding:8px 10px;">
+              <div class="color-name" style="font-size:11px;">テキストグレー</div>
+              <div class="color-hex">#666666</div>
+            </div>
+          </div>
+          <div class="color-item" style="width:110px;">
+            <div class="color-swatch" style="background:#F7FAFA; height:44px; border:1px solid var(--border);"></div>
+            <div class="color-info" style="padding:8px 10px;">
+              <div class="color-name" style="font-size:11px;">ページ背景</div>
+              <div class="color-hex">#F7FAFA</div>
+            </div>
+          </div>
+          <div class="color-item" style="width:110px;">
+            <div class="color-swatch" style="background:#FEFEFE; height:44px; border:1px solid var(--border);"></div>
+            <div class="color-info" style="padding:8px 10px;">
+              <div class="color-name" style="font-size:11px;">ホワイト</div>
+              <div class="color-hex">#FEFEFE</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- カラーホイール -->
+      <div style="background:var(--gray-bg); border:1px solid var(--border); border-radius:10px; padding:20px 24px;">
+        <div style="font-size:11px; font-weight:700; letter-spacing:0.1em; color:var(--text-mid); margin-bottom:16px;">COLOR WHEEL — 色相環上の位置</div>
+        <div style="display:flex; align-items:center; gap:32px; flex-wrap:wrap;">
+
+          <!-- ホイール本体 -->
+          <div style="position:relative; width:220px; height:220px; flex-shrink:0;">
+            <!-- 外周グラデーション -->
+            <div style="position:absolute; inset:0; border-radius:50%;
+              background: conic-gradient(
+                hsl(0,72%,60%) 0deg,
+                hsl(20,72%,60%) 20deg,
+                hsl(40,72%,60%) 40deg,
+                hsl(60,72%,60%) 60deg,
+                hsl(80,72%,60%) 80deg,
+                hsl(100,72%,60%) 100deg,
+                hsl(120,72%,60%) 120deg,
+                hsl(140,72%,60%) 140deg,
+                hsl(160,72%,60%) 160deg,
+                hsl(180,72%,60%) 180deg,
+                hsl(200,72%,60%) 200deg,
+                hsl(220,72%,60%) 220deg,
+                hsl(240,72%,60%) 240deg,
+                hsl(260,72%,60%) 260deg,
+                hsl(280,72%,60%) 280deg,
+                hsl(300,72%,60%) 300deg,
+                hsl(320,72%,60%) 320deg,
+                hsl(340,72%,60%) 340deg,
+                hsl(360,72%,60%) 360deg
+              );
+            "></div>
+            <!-- 中央白抜き（ドーナツ） -->
+            <div style="position:absolute; top:55px; left:55px; width:110px; height:110px; border-radius:50%; background:var(--white); display:flex; align-items:center; justify-content:center; flex-direction:column; gap:4px;">
+              <div style="width:28px; height:28px; border-radius:50%; background: linear-gradient(135deg,#4F92BD,#00AD9B);"></div>
+              <div style="font-size:8px; font-weight:700; color:var(--text-mid); letter-spacing:0.04em; text-align:center; line-height:1.3;">KENYUKAI<br>COLORS</div>
+            </div>
+
+            <!-- ① 園田病院 メインブルー #4F92BD hue≈207° → left:65px top:175px -->
+            <div style="position:absolute; width:18px; height:18px; border-radius:50%; background:#4F92BD; border:2.5px solid #fff; box-shadow:0 1px 5px rgba(0,0,0,0.3); left:59px; top:169px;"></div>
+
+            <!-- ② 園田病院 ライトブルー #6CB3D9 hue≈204° → left:62px top:161px -->
+            <div style="position:absolute; width:14px; height:14px; border-radius:50%; background:#6CB3D9; border:2px solid #fff; box-shadow:0 1px 4px rgba(0,0,0,0.25); left:62px; top:161px;"></div>
+
+            <!-- ③ さわやかセンター メインティール #00AD9B hue≈175° → left:109px top:178px -->
+            <div style="position:absolute; width:18px; height:18px; border-radius:50%; background:#00AD9B; border:2.5px solid #fff; box-shadow:0 1px 5px rgba(0,0,0,0.3); left:103px; top:178px;"></div>
+
+            <!-- ④ さわやかセンター ライトティール #3EC9B4 hue≈173° → near teal -->
+            <div style="position:absolute; width:14px; height:14px; border-radius:50%; background:#3EC9B4; border:2px solid #fff; box-shadow:0 1px 4px rgba(0,0,0,0.25); left:113px; top:172px;"></div>
+
+            <!-- ⑤ 園田病院 アクセント #F5A623 hue≈37° → left:151px top:31px -->
+            <div style="position:absolute; width:18px; height:18px; border-radius:50%; background:#F5A623; border:2.5px solid #fff; box-shadow:0 1px 5px rgba(0,0,0,0.3); left:145px; top:31px;"></div>
+
+            <!-- ⑥ さわやかセンター アクセント #F07878 hue≈0° → left:102px top:14px -->
+            <div style="position:absolute; width:18px; height:18px; border-radius:50%; background:#F07878; border:2.5px solid #fff; box-shadow:0 1px 5px rgba(0,0,0,0.3); left:96px; top:14px;"></div>
+
+            <!-- 補色矢印ライン（イメージ） -->
+            <!-- 寒色ゾーンラベル -->
+            <div style="position:absolute; bottom:4px; left:50%; transform:translateX(-50%); font-size:8px; color:#4F92BD; font-weight:700; white-space:nowrap;">寒色ゾーン（メイン）</div>
+            <!-- 暖色ゾーンラベル -->
+            <div style="position:absolute; top:1px; left:50%; transform:translateX(-50%); font-size:8px; color:#E07020; font-weight:700; white-space:nowrap;">暖色ゾーン（アクセント）</div>
+          </div>
+
+          <!-- 凡例 -->
+          <div style="display:flex; flex-direction:column; gap:10px; min-width:180px;">
+            <div style="font-size:11px; font-weight:700; color:var(--text-dark); margin-bottom:2px;">園田病院</div>
+            <div style="display:flex; align-items:center; gap:8px; font-size:12px;">
+              <div style="width:18px; height:18px; border-radius:50%; background:#4F92BD; border:2px solid #fff; box-shadow:0 0 0 1.5px #4F92BD; flex-shrink:0;"></div>
+              <span>メイン <span style="font-family:monospace; color:#4F92BD;">#4F92BD</span></span>
+            </div>
+            <div style="display:flex; align-items:center; gap:8px; font-size:12px;">
+              <div style="width:14px; height:14px; border-radius:50%; background:#6CB3D9; border:2px solid #fff; box-shadow:0 0 0 1.5px #6CB3D9; flex-shrink:0; margin-left:2px;"></div>
+              <span>サブ <span style="font-family:monospace; color:#6CB3D9;">#6CB3D9</span></span>
+            </div>
+            <div style="display:flex; align-items:center; gap:8px; font-size:12px;">
+              <div style="width:18px; height:18px; border-radius:50%; background:#F5A623; border:2px solid #fff; box-shadow:0 0 0 1.5px #F5A623; flex-shrink:0;"></div>
+              <span>アクセント <span style="font-family:monospace; color:#F5A623;">#F5A623</span></span>
+            </div>
+
+            <div style="height:1px; background:var(--border); margin:4px 0;"></div>
+
+            <div style="font-size:11px; font-weight:700; color:var(--text-dark); margin-bottom:2px;">さわやかセンター</div>
+            <div style="display:flex; align-items:center; gap:8px; font-size:12px;">
+              <div style="width:18px; height:18px; border-radius:50%; background:#00AD9B; border:2px solid #fff; box-shadow:0 0 0 1.5px #00AD9B; flex-shrink:0;"></div>
+              <span>メイン <span style="font-family:monospace; color:#00AD9B;">#00AD9B</span></span>
+            </div>
+            <div style="display:flex; align-items:center; gap:8px; font-size:12px;">
+              <div style="width:14px; height:14px; border-radius:50%; background:#3EC9B4; border:2px solid #fff; box-shadow:0 0 0 1.5px #3EC9B4; flex-shrink:0; margin-left:2px;"></div>
+              <span>サブ <span style="font-family:monospace; color:#3EC9B4;">#3EC9B4</span></span>
+            </div>
+            <div style="display:flex; align-items:center; gap:8px; font-size:12px;">
+              <div style="width:18px; height:18px; border-radius:50%; background:#F07878; border:2px solid #fff; box-shadow:0 0 0 1.5px #F07878; flex-shrink:0;"></div>
+              <span>アクセント <span style="font-family:monospace; color:#F07878;">#F07878</span></span>
+            </div>
+
+            <div style="margin-top:8px; background:#fffbe6; border:1px solid #f0d050; border-radius:6px; padding:8px 10px; font-size:11px; line-height:1.7; color:#7a5c00;">
+              メインカラーは寒色ゾーン（青〜ティール）、アクセントカラーは補色にあたる暖色ゾーン（オレンジ〜コーラル）に位置し、互いを引き立てます。
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- トーンマップ -->
+      <div style="margin-top:20px; background:var(--gray-bg); border:1px solid var(--border); border-radius:10px; padding:20px 24px;">
+        <div style="font-size:11px; font-weight:700; letter-spacing:0.1em; color:var(--text-mid); margin-bottom:16px;">TONE MAP — 明度×彩度の早見表</div>
+
+        <div style="display:grid; grid-template-columns:48px repeat(4,1fr); grid-template-rows:auto repeat(3,auto); gap:3px; font-size:11px;">
+
+          <!-- ヘッダー行 -->
+          <div></div>
+          <div style="text-align:center;color:var(--text-mid);font-size:10px;padding:4px 0;">低彩度</div>
+          <div style="text-align:center;color:var(--text-mid);font-size:10px;padding:4px 0;">中彩度</div>
+          <div style="text-align:center;color:var(--text-mid);font-size:10px;padding:4px 0;">高彩度</div>
+          <div style="text-align:center;color:var(--text-mid);font-size:10px;padding:4px 0;">最高彩度</div>
+
+          <!-- 高明度 -->
+          <div style="display:flex;align-items:center;justify-content:flex-end;padding-right:8px;color:var(--text-mid);font-size:10px;">高明度</div>
+          <div style="background:#f0f0f0;border-radius:6px;padding:10px 8px;text-align:center;">
+            <div style="font-weight:700;color:#888;">ペール</div>
+            <div style="font-size:9px;color:#aaa;">Pale</div>
+          </div>
+          <div style="background:#ddeaf5;border:2px solid #6CB3D9;border-radius:6px;padding:10px 8px;text-align:center;position:relative;">
+            <div style="font-weight:700;color:#2a7090;">ライト</div>
+            <div style="font-size:9px;color:#4F92BD;">Light</div>
+            <div style="margin-top:6px;display:flex;gap:3px;justify-content:center;flex-wrap:wrap;">
+              <span style="display:inline-block;width:12px;height:12px;border-radius:50%;background:#6CB3D9;border:1px solid #fff;box-shadow:0 0 0 1px #6CB3D9;" title="#6CB3D9"></span>
+            </div>
+            <div style="font-size:8px;color:#4F92BD;margin-top:3px;">園田サブ</div>
+          </div>
+          <div style="background:#fce8e8;border:2px solid #F07878;border-radius:6px;padding:10px 8px;text-align:center;">
+            <div style="font-weight:700;color:#a03030;">ブライト</div>
+            <div style="font-size:9px;color:#F07878;">Bright</div>
+            <div style="margin-top:6px;display:flex;gap:3px;justify-content:center;flex-wrap:wrap;">
+              <span style="display:inline-block;width:12px;height:12px;border-radius:50%;background:#F07878;border:1px solid #fff;box-shadow:0 0 0 1px #F07878;" title="#F07878"></span>
+            </div>
+            <div style="font-size:8px;color:#F07878;margin-top:3px;">さわやかAC</div>
+          </div>
+          <div style="background:#f0f0f0;border-radius:6px;padding:10px 8px;text-align:center;">
+            <div style="font-weight:700;color:#888;">—</div>
+          </div>
+
+          <!-- 中明度 -->
+          <div style="display:flex;align-items:center;justify-content:flex-end;padding-right:8px;color:var(--text-mid);font-size:10px;">中明度</div>
+          <div style="background:#f0f0f0;border-radius:6px;padding:10px 8px;text-align:center;">
+            <div style="font-weight:700;color:#888;">グレイッシュ</div>
+            <div style="font-size:9px;color:#aaa;">Grayish</div>
+          </div>
+          <div style="background:#ddeaf5;border:2px solid #4F92BD;border-radius:6px;padding:10px 8px;text-align:center;">
+            <div style="font-weight:700;color:#2a6090;">ソフト</div>
+            <div style="font-size:9px;color:#4F92BD;">Soft</div>
+            <div style="margin-top:6px;display:flex;gap:3px;justify-content:center;flex-wrap:wrap;">
+              <span style="display:inline-block;width:12px;height:12px;border-radius:50%;background:#4F92BD;border:1px solid #fff;box-shadow:0 0 0 1px #4F92BD;" title="#4F92BD"></span>
+              <span style="display:inline-block;width:12px;height:12px;border-radius:50%;background:#3EC9B4;border:1px solid #fff;box-shadow:0 0 0 1px #3EC9B4;" title="#3EC9B4"></span>
+            </div>
+            <div style="font-size:8px;color:#4F92BD;margin-top:3px;">園田メイン・さわやかサブ</div>
+          </div>
+          <div style="background:#fdf0d5;border:2px solid #F5A623;border-radius:6px;padding:10px 8px;text-align:center;">
+            <div style="font-weight:700;color:#8a5200;">ストロング</div>
+            <div style="font-size:9px;color:#F5A623;">Strong</div>
+            <div style="margin-top:6px;display:flex;gap:3px;justify-content:center;flex-wrap:wrap;">
+              <span style="display:inline-block;width:12px;height:12px;border-radius:50%;background:#F5A623;border:1px solid #fff;box-shadow:0 0 0 1px #F5A623;" title="#F5A623"></span>
+              <span style="display:inline-block;width:12px;height:12px;border-radius:50%;background:#00AD9B;border:1px solid #fff;box-shadow:0 0 0 1px #00AD9B;" title="#00AD9B"></span>
+            </div>
+            <div style="font-size:8px;color:#8a5200;margin-top:3px;">園田AC・さわやかメイン</div>
+          </div>
+          <div style="background:#f0f0f0;border-radius:6px;padding:10px 8px;text-align:center;">
+            <div style="font-weight:700;color:#888;">ビビッド</div>
+            <div style="font-size:9px;color:#aaa;">Vivid</div>
+            <div style="font-size:8px;color:#aaa;margin-top:4px;">使用しない</div>
+          </div>
+
+          <!-- 低明度 -->
+          <div style="display:flex;align-items:center;justify-content:flex-end;padding-right:8px;color:var(--text-mid);font-size:10px;">低明度</div>
+          <div style="background:#f0f0f0;border-radius:6px;padding:10px 8px;text-align:center;">
+            <div style="font-weight:700;color:#888;">ダークグレイッシュ</div>
+            <div style="font-size:9px;color:#aaa;">Dk.Grayish</div>
+          </div>
+          <div style="background:#f0f0f0;border-radius:6px;padding:10px 8px;text-align:center;">
+            <div style="font-weight:700;color:#888;">ダル</div>
+            <div style="font-size:9px;color:#aaa;">Dull</div>
+            <div style="font-size:8px;color:#aaa;margin-top:4px;">使用しない</div>
+          </div>
+          <div style="background:#f0f0f0;border-radius:6px;padding:10px 8px;text-align:center;">
+            <div style="font-weight:700;color:#888;">ディープ</div>
+            <div style="font-size:9px;color:#aaa;">Deep</div>
+            <div style="font-size:8px;color:#aaa;margin-top:4px;">使用しない</div>
+          </div>
+          <div style="background:#f0f0f0;border-radius:6px;padding:10px 8px;text-align:center;">
+            <div style="font-weight:700;color:#888;">—</div>
+          </div>
+
+        </div>
+
+        <div style="margin-top:12px; font-size:11px; color:var(--text-mid); line-height:1.8;">
+          枠あり＝使用するトーン。けんゆう会のブランドは <strong style="color:var(--text-dark);">ライト・ソフト・ストロング・ブライト</strong> の4トーン内で完結しています。ビビッド・ダル・ディープは使用しません。
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+
+  <!-- 2. タイポグラフィ -->
+  <div class="section">
+    <div class="section-header">
+      <div class="num">2</div>
+      <h2>タイポグラフィ</h2>
+    </div>
+    <div class="section-body">
+
+      <div class="type-row">
+        <div class="type-label">英数字フォント</div>
+        <div class="type-sample">
+          <span style="font-family:'Montserrat',sans-serif; font-size:22px; font-weight:700; color:#4F92BD; letter-spacing:0.08em;">Montserrat</span>
+          <span style="font-family:'Montserrat',sans-serif; font-size:13px; color:#666; margin-left:12px;">数字・英語テキストに使用。シリーズ番号やサイト名など。</span>
+        </div>
+      </div>
+
+      <div class="type-row">
+        <div class="type-label">日本語フォント</div>
+        <div class="type-sample">
+          <span style="font-size:20px; font-weight:700;">ヒラギノ角ゴ / Noto Sans JP</span>
+          <span style="font-size:12px; color:#666; margin-left:10px;">見出し・本文。太めウェイト（700）を推奨。</span>
+        </div>
+      </div>
+
+      <div class="type-row">
+        <div class="type-label">大見出し（H1）</div>
+        <div class="type-sample">
+          <div style="font-size:28px; font-weight:700; line-height:1.3; color:#333;">つなぐ医療、<br>つづく街。</div>
+          <div style="font-size:11px; color:#666; margin-top:4px;">font-size: 28–36px｜font-weight: 700｜line-height: 1.3</div>
+        </div>
+      </div>
+
+      <div class="type-row">
+        <div class="type-label">中見出し（H2）</div>
+        <div class="type-sample">
+          <div style="font-size:20px; font-weight:700; color:#4F92BD;">自分らしい毎日を取り戻す場所</div>
+          <div style="font-size:11px; color:#666; margin-top:4px;">font-size: 18–22px｜font-weight: 700｜color: #4F92BD</div>
+        </div>
+      </div>
+
+      <div class="type-row">
+        <div class="type-label">本文テキスト</div>
+        <div class="type-sample">
+          <div style="font-size:14px; line-height:1.8; color:#333;">患者さんひとりひとりに寄り添いながら、<br>チームで医療を届けていきます。</div>
+          <div style="font-size:11px; color:#666; margin-top:4px;">font-size: 14–16px｜line-height: 1.8–2.0｜color: #333</div>
+        </div>
+      </div>
+
+      <div class="type-row">
+        <div class="type-label">キャプション・注記</div>
+        <div class="type-sample">
+          <div style="font-size:12px; color:#666;">※詳しくは採用ページをご確認ください</div>
+          <div style="font-size:11px; color:#666; margin-top:4px;">font-size: 12px｜color: #666</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+
+  <!-- 3. 写真・ビジュアルのトーン -->
+  <div class="section">
+    <div class="section-header">
+      <div class="num">3</div>
+      <h2>写真・ビジュアルのトーン</h2>
+    </div>
+    <div class="section-body">
+
+      <div class="photo-grid">
+        <div class="photo-card">
+          <div class="photo-thumb" style="background: linear-gradient(135deg, #d4eaf5 0%, #b8d9ec 100%); display:flex; align-items:center; justify-content:center; color:#4F92BD; font-size:28px;">🏥</div>
+          <div class="photo-label"><strong>施設・空間</strong><br>明るい自然光。清潔感があり、人の温もりを感じる雰囲気。</div>
+        </div>
+        <div class="photo-card">
+          <div class="photo-thumb" style="background: linear-gradient(135deg, #e0f5f3 0%, #b8e8e3 100%); display:flex; align-items:center; justify-content:center; color:#00AD9B; font-size:28px;">👩‍⚕️</div>
+          <div class="photo-label"><strong>スタッフ</strong><br>自然な表情・笑顔。ポーズより会話や動きの瞬間を優先。</div>
+        </div>
+        <div class="photo-card">
+          <div class="photo-thumb" style="background: linear-gradient(135deg, #fdf3e3 0%, #f5e0c0 100%); display:flex; align-items:center; justify-content:center; color:#c87941; font-size:28px;">🤝</div>
+          <div class="photo-label"><strong>患者・利用者</strong><br>寄り添いの関係性が伝わる構図。尊厳が伝わる自然な描写。</div>
+        </div>
+      </div>
+
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:14px;">
+        <div style="background:var(--teal-bg); border:1px solid #a8dbd5; border-radius:8px; padding:14px 16px;">
+          <div style="font-size:11px; font-weight:700; color:var(--teal); margin-bottom:8px;">✓ 推奨トーン</div>
+          <ul style="padding-left:16px; font-size:12px; line-height:2; color:var(--text-dark);">
+            <li>明るさ：自然光ベース、やや明るめ</li>
+            <li>コントラスト：穏やか（高コントラストにしない）</li>
+            <li>色温度：ウォーム〜ニュートラル</li>
+            <li>彩度：自然のまま（過度な加工なし）</li>
+            <li>被写界深度：背景をやや柔らかくぼかす</li>
+          </ul>
+        </div>
+        <div style="background:#fff5f7; border:1px solid #f5b8c5; border-radius:8px; padding:14px 16px;">
+          <div style="font-size:11px; font-weight:700; color:var(--alert); margin-bottom:8px;">✗ 避けるべきトーン</div>
+          <ul style="padding-left:16px; font-size:12px; line-height:2; color:var(--text-dark);">
+            <li>暗い・陰鬱な雰囲気の写真</li>
+            <li>過剰なフィルター（ビビッド・HDR）</li>
+            <li>スタジオ感が強すぎるライティング</li>
+            <li>演技的・不自然なポーズ</li>
+            <li>医療用器具のクローズアップ</li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+
+  <!-- 4. 言葉・コピーのトーン -->
+  <div class="section">
+    <div class="section-header">
+      <div class="num">4</div>
+      <h2>言葉・コピーのトーン</h2>
+    </div>
+    <div class="section-body">
+
+      <p style="font-size:12px; color:var(--text-mid); margin-bottom:16px;">バナーや記事タイトルに使うコピーのトーン基準です。</p>
+
+      <div class="copy-card">
+        <span class="copy-tag good">GOOD</span>
+        <div class="copy-text">「自分らしい毎日を取り戻す場所」</div>
+        <div class="copy-note">生活者目線・短くて温かい・抽象度が高すぎず低すぎない</div>
+      </div>
+
+      <div class="copy-card">
+        <span class="copy-tag good">GOOD</span>
+        <div class="copy-text">「つなぐ医療、つづく街。」</div>
+        <div class="copy-note">体言止め・リズム感・地域への視点。句読点も個性になる。</div>
+      </div>
+
+      <div class="copy-card">
+        <span class="copy-tag good">GOOD</span>
+        <div class="copy-text">「きれいな志望動機じゃなくていいと思ってます。」</div>
+        <div class="copy-note">口語・等身大・読み手に語りかける文体。note向きのトーン。</div>
+      </div>
+
+      <div class="copy-card">
+        <span class="copy-tag bad">NG</span>
+        <div class="copy-text">「最先端医療で地域を守る！圧倒的な実績！」</div>
+        <div class="copy-note">煽り口調・誇示・感嘆符の多用はブランドトーンから外れる</div>
+      </div>
+
+      <div class="copy-card">
+        <span class="copy-tag bad">NG</span>
+        <div class="copy-text">「急募！看護師募集中！【高待遇】」</div>
+        <div class="copy-note">求人広告的な表現。等身大・人間らしさを失う。</div>
+      </div>
+
+    </div>
+  </div>
+
+
+  <!-- 5. バナー制作 DO / DON'T -->
+  <div class="section">
+    <div class="section-header">
+      <div class="num">5</div>
+      <h2>バナー制作 DO / DON'T</h2>
+    </div>
+    <div class="section-body">
+
+      <!-- バナーサンプル（CSSのみ） -->
+      <p style="font-size:12px; color:var(--text-mid); margin-bottom:14px;">バナーレイアウトのイメージサンプル（CSSのみで表現）</p>
+
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:14px; margin-bottom:20px;">
+
+        <!-- GOOD バナーサンプル -->
+        <div>
+          <div style="font-size:11px; font-weight:700; color:var(--teal); margin-bottom:6px;">✓ こういうトーンで</div>
+          <div class="demo-banner" style="background:linear-gradient(135deg, #E7F2F9 0%, #E8F7F6 100%);">
+            <div class="demo-banner-inner">
+              <div style="font-family:'Montserrat',sans-serif; font-size:10px; font-weight:700; color:#00AD9B; letter-spacing:0.12em; margin-bottom:6px;">#KENYUKAIで働いてる理由</div>
+              <div style="font-size:16px; font-weight:700; color:#333; line-height:1.4; margin-bottom:8px;">地元に戻る決断を<br>後押ししてくれた場所</div>
+              <div style="display:inline-flex; align-items:center; gap:5px; background:#4F92BD; color:#fff; font-size:11px; font-weight:700; padding:5px 12px; border-radius:6px;">記事を読む →</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- NG バナーサンプル -->
+        <div>
+          <div style="font-size:11px; font-weight:700; color:var(--alert); margin-bottom:6px;">✗ こういうトーンは避ける</div>
+          <div class="demo-banner" style="background:#FF3366;">
+            <div class="demo-banner-inner">
+              <div style="font-size:11px; font-weight:700; color:#ff0; letter-spacing:0.1em; margin-bottom:6px;">【急募】看護師大募集！！</div>
+              <div style="font-size:16px; font-weight:700; color:#fff; line-height:1.4; margin-bottom:8px;">高収入・充実の福利厚生！<br>今すぐ応募！！！</div>
+              <div style="display:inline-flex; background:#ff0; color:#333; font-size:11px; font-weight:700; padding:5px 12px; border-radius:6px;">今すぐ応募!!</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="do-dont">
+        <div class="do-box">
+          <div class="box-label">✓ DO — やること</div>
+          <ul>
+            <li>メインブルー（#4F92BD）を基軸に使う</li>
+            <li>白・淡色背景で余白を十分に取る</li>
+            <li>Montserrat（英数字）＋ゴシック体（日本語）を使う</li>
+            <li>コピーは短く・等身大の言葉で</li>
+            <li>写真は自然光・穏やかなコントラスト</li>
+            <li>シリーズ名をMontserrat + ティール色で統一</li>
+            <li>CTAボタンは角丸10px以上</li>
+          </ul>
+        </div>
+        <div class="dont-box">
+          <div class="box-label">✗ DON'T — やらないこと</div>
+          <ul>
+            <li>パレット外の派手な色（赤・黄・蛍光色）を使う</li>
+            <li>過剰な感嘆符（！！！）や煽り文句</li>
+            <li>テキストを詰め込みすぎる</li>
+            <li>コントラストが強すぎる写真加工</li>
+            <li>医療機器・注射器のクローズアップ写真</li>
+            <li>明朝体・セリフ体フォントのみで構成</li>
+            <li>背景色と文字色のコントラスト不足</li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+
+  <div class="doc-footer">
+    <p>このマニュアルは sonoda-hospital.jp のデザインシステムをもとに作成しています。</p>
+    <p style="margin-top:4px;">小さな編集室｜けんゆう会 採用広報</p>
+  </div>
+
+</div>
+
+<div class="pdf-wrap">
+  <button class="pdf-btn" onclick="window.print()">
+    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+      <polyline points="7 10 12 15 17 10"/>
+      <line x1="12" y1="15" x2="12" y2="3"/>
+    </svg>
+    PDFで保存
+  </button>
+</div>
+
+</body>
+</html>
